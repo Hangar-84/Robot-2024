@@ -27,11 +27,11 @@ class Robot(MagicRobot):
         match self.controller:
             case XboxController():
                 x_speed = self.controller.getRightY()
-                y_speed = self.controller.getRightX()
+                z_rotation = self.controller.getRightX()
 
             case Joystick():
                 x_speed = self.controller.getY()
-                y_speed = self.controller.getX()
+                z_rotation = self.controller.getX()
 
             case None:
                 raise ValueError("Controller was not initialized!")
@@ -39,4 +39,4 @@ class Robot(MagicRobot):
             case _:
                 raise ValueError("Invalid controller type!")
 
-        self.drive.arcadeDrive(x_speed, y_speed)
+        self.drive.arcadeDrive(x_speed, z_rotation)
