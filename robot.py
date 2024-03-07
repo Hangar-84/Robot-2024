@@ -9,10 +9,13 @@ from wpilib.drive import DifferentialDrive
 
 
 class Robot(MagicRobot):
-    left_motors: MotorControllerGroup
-    right_motors: MotorControllerGroup
-    drive: DifferentialDrive
-    controller: XboxController | Joystick
+    def __init__(self):
+        super().__init__()
+
+        self.left_motors: MotorControllerGroup | None = None
+        self.right_motors: MotorControllerGroup | None = None
+        self.drive: DifferentialDrive | None = None
+        self.controller: XboxController | Joystick | None = None
 
     def createObjects(self) -> None:
         self.left_motors = MotorControllerGroup(WPI_TalonSRX(0), WPI_VictorSPX(0))
