@@ -17,7 +17,7 @@ from phoenix5 import WPI_TalonSRX, WPI_VictorSPX
 # NOTE: `rev` comes from `robotpy`'s `rev` extra. The following inspection is a false positive.
 # noinspection PyPackageRequirements
 from rev import CANSparkMax, CANSparkLowLevel
-from wpilib import MotorControllerGroup, XboxController
+from wpilib import MotorControllerGroup
 from wpilib.drive import DifferentialDrive
 
 
@@ -43,7 +43,7 @@ class Robot(MagicRobot):
             CANSparkMax(2, CANSparkLowLevel.MotorType.kBrushed),
         )
 
-        self.controller = XboxController(0)
+        self.controller = CommandXboxController(0)
 
         self.right_motors.setInverted(True)
 
