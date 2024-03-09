@@ -314,17 +314,6 @@ robotpy-cli = ">=2024.0,<2025.0"
 wpilib = ">=2024.1.0,<2025"
 
 [[package]]
-name = "pyhumps"
-version = "3.8.0"
-description = "🐫  Convert strings (and dictionary keys) between snake case, camel case and pascal case in Python. Inspired by Humps for Node"
-optional = false
-python-versions = "*"
-files = [
-    {file = "pyhumps-3.8.0-py3-none-any.whl", hash = "sha256:060e1954d9069f428232a1adda165db0b9d8dfdce1d265d36df7fbff540acfd6"},
-    {file = "pyhumps-3.8.0.tar.gz", hash = "sha256:498026258f7ee1a8e447c2e28526c0bea9407f9a59c03260aee4bd6c04d681a3"},
-]
-
-[[package]]
 name = "pynacl"
 version = "1.5.0"
 description = "Python binding to the Networking and Cryptography (NaCl) library"
@@ -440,6 +429,7 @@ files = [
 pyfrc = {version = ">=2024.0.0,<2025.0.0", markers = "platform_machine != \"roborio\" and platform_machine != \"armv7l\" and platform_machine != \"aarch64\""}
 pyntcore = "2024.3.1.0"
 robotpy-cli = ">=2024.0.0,<2025.0.0"
+robotpy-commands-v2 = {version = ">=2024.3.1,<2025.0.0", optional = true, markers = "extra == \"commands2\""}
 robotpy-ctre = {version = ">=2024.1.1,<2025.0.0", optional = true, markers = "python_version >= \"3.9\" and (platform_machine != \"armv7l\" and platform_machine != \"aarch64\") and extra == \"phoenix5\""}
 robotpy-hal = "2024.3.1.0"
 robotpy-halsim-gui = {version = "2024.3.1.0", markers = "platform_machine != \"roborio\" and platform_machine != \"armv7l\" and platform_machine != \"aarch64\""}
@@ -476,6 +466,21 @@ files = [
     {file = "robotpy-cli-2024.0.0.tar.gz", hash = "sha256:e6519f06856eb0a7ef5f25a57bfc8dcb20635cef84706fb37c0b602d59e33f39"},
     {file = "robotpy_cli-2024.0.0-py3-none-any.whl", hash = "sha256:9284035fa67058b33593b1846e13501eda0861fb9d9adce4bd01b101c9f1f26e"},
 ]
+
+[[package]]
+name = "robotpy-commands-v2"
+version = "2024.3.1"
+description = "WPILib command framework v2"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "robotpy-commands-v2-2024.3.1.tar.gz", hash = "sha256:bd7caf6060413d1b70bcedab665fb24ee2deed9169aeee611efb62a9dbf40852"},
+    {file = "robotpy_commands_v2-2024.3.1-py3-none-any.whl", hash = "sha256:94c2779a13c46c27f1454b170f01fb9c1c9e6a02d7b8fccaa86cd4e5c87d2435"},
+]
+
+[package.dependencies]
+typing-extensions = ">=4.1.0,<5"
+wpilib = ">=2024.3.1,<2025"
 
 [[package]]
 name = "robotpy-ctre"
@@ -754,4 +759,4 @@ robotpy-wpiutil = "2024.3.1.0"
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<3.13"
-content-hash = "657780c1ae09351ab3b89ddce2d29bfa0e65c21e01b73699ddda1a37a6ebb922"
+content-hash = "c6dc4e1f74f49a2db72c5a7b911af0e281c97a08cd2dd02ca9138752bdefed41"

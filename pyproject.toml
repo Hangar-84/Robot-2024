@@ -12,6 +12,7 @@ python = ">=3.10,<3.13"
 [tool.poetry.dependencies.robotpy]
 version = "^2024.3.1.0"
 extras = [
+    "commands2",
     "phoenix5",
 ]
 
@@ -19,6 +20,7 @@ extras = [
 robotpy_version = "2024.3.1.0"
 # Read: https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html
 robotpy_extras = [
+    "commands2",
     "phoenix5",
 ]
 requires = []
