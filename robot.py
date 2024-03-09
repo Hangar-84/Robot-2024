@@ -5,7 +5,7 @@ Copyright (C) 2024  Hangar 84
 from commands2.button import CommandXboxController, CommandJoystick
 from magicbot import MagicRobot
 from phoenix5 import WPI_TalonSRX, WPI_VictorSPX
-from wpilib import MotorControllerGroup, XboxController, Joystick
+from wpilib import MotorControllerGroup, XboxController
 from wpilib.drive import DifferentialDrive
 
 
