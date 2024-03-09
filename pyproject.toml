@@ -8,17 +8,21 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
-robotpy = { extras = ["phoenix5"], version = "^2024.3.1.0" }
-pyhumps = "^3.8.0"
+
+[tool.poetry.dependencies.robotpy]
+version = "^2024.3.1.0"
+extras = [
+    "phoenix5",
+]
+
+[tool.robotpy]
+robotpy_version = "2024.3.1.0"
+# Read: https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html
+robotpy_extras = [
+    "phoenix5",
+]
+requires = []
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
-
-[tool.robotpy]
-robotpy_version = "2024.3.1.0"
-robotpy_extras = [
-    # "all",
-    "phoenix5",
-]
-requires = []
