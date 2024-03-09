@@ -14,6 +14,7 @@ version = "^2024.3.1.0"
 extras = [
     "commands2",
     "phoenix5",
+    "rev",
 ]
 
 [tool.robotpy]
@@ -22,6 +23,7 @@ robotpy_version = "2024.3.1.0"
 robotpy_extras = [
     "commands2",
     "phoenix5",
+    "rev",
 ]
 requires = []
 

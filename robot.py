@@ -5,6 +5,9 @@ Copyright (C) 2024  Hangar 84
 from commands2.button import CommandXboxController, CommandJoystick
 from magicbot import MagicRobot
 from phoenix5 import WPI_TalonSRX, WPI_VictorSPX
+# NOTE: `rev` comes from `robotpy`'s `rev` extra. The following inspection is a false positive.
+# noinspection PyPackageRequirements
+from rev import CANSparkMax, CANSparkLowLevel
 from wpilib import MotorControllerGroup, XboxController
 from wpilib.drive import DifferentialDrive
 
@@ -26,6 +29,11 @@ class Robot(MagicRobot):
         self.right_motors = MotorControllerGroup(WPI_TalonSRX(1), WPI_VictorSPX(1))
         self.drive = DifferentialDrive(self.left_motors, self.right_motors)
 
+        self.launcher_motors = MotorControllerGroup(
+            CANSparkMax(1, CANSparkLowLevel.MotorType.kBrushed),
+            CANSparkMax(2, CANSparkLowLevel.MotorType.kBrushed),
+        )
+
         self.controller = XboxController(0)
 
         self.right_motors.setInverted(True)
@@ -36,9 +44,13 @@ class Robot(MagicRobot):
                 x_speed = self.controller.getRightY()
                 z_rotation = self.controller.getRightX()
 
+                launcher_speed = -self.controller.getLeftY() + self.controller.getRightY()
+
             case CommandJoystick():
                 x_speed = self.controller.getY()
                 z_rotation = self.controller.getX()
+
+                raise NotImplemented("Joystick control of the launcher is not yet implemented!")
 
             case None:
                 raise ValueError("Controller was not initialized!")
@@ -47,3 +59,4 @@ class Robot(MagicRobot):
                 raise ValueError("Invalid controller type!")
 
         self.drive.arcadeDrive(x_speed, z_rotation)
+        self.launcher_motors.set(launcher_speed)
