@@ -1,6 +1,15 @@
 """
 Robot 2024 — Robot code for the 2023-2024 FRC season.
 Copyright (C) 2024  Hangar 84
+
+Xbox Controller Mapping:
+- Right Stick: Drive (Arcade Drive)
+- Left Trigger: Launcher (Intake)
+- Right Trigger: Launcher (Outtake)
+
+Joystick Mapping:
+- Main Stick: Drive (Arcade Drive)
+- TODO: Add joystick control for the launcher.
 """
 from commands2.button import CommandXboxController, CommandJoystick
 from magicbot import MagicRobot
