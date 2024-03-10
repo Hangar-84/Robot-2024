@@ -45,7 +45,8 @@ class Robot(MagicRobot):
 
         self.controller = CommandXboxController(0)
 
-        self.right_motors.setInverted(True)
+        self.left_motors.setInverted(True)
+        self.launcher_motors.setInverted(True)
 
     def teleopPeriodic(self) -> None:
         match self.controller:
@@ -72,5 +73,5 @@ class Robot(MagicRobot):
         elif abs(z_rotation) < 0 < x_speed:
             z_rotation = -0.175
 
-        self.drive.arcadeDrive(x_speed, z_rotation)
+        self.drive.arcadeDrive(x_speed, -z_rotation)
         self.launcher_motors.set(launcher_speed)
