@@ -69,10 +69,13 @@ class Robot(MagicRobot):
             case _:
                 raise ValueError("Invalid controller type!")
 
-        if abs(z_rotation) < 0 > x_speed:
-            z_rotation = 0.175
-        elif abs(z_rotation) < 0 < x_speed:
-            z_rotation = -0.175
+        # Apply a manual correction to drift due to lack of friction on left wheels when going straight forward/backward
+        # TODO: Reduce the correction at slower speeds
+        if abs(z_rotation) < 0.1:
+            if x_speed > 0:
+                z_rotation = 0.175
+            elif x_speed < 0:
+                z_rotation = -0.175
 
         self.drive.arcadeDrive(x_speed, -z_rotation)
         self.launcher_motors.set(launcher_speed)
