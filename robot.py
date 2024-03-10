@@ -50,7 +50,7 @@ class Robot(MagicRobot):
     def teleopPeriodic(self) -> None:
         match self.controller:
             case CommandXboxController():
-                x_speed = self.controller.getRightY()
+                x_speed = self.controller.getLeftY()
                 z_rotation = self.controller.getRightX()
 
                 launcher_speed = -self.controller.getLeftY() + self.controller.getRightY()
@@ -66,6 +66,11 @@ class Robot(MagicRobot):
 
             case _:
                 raise ValueError("Invalid controller type!")
+
+        if abs(z_rotation) < 0 > x_speed:
+            z_rotation = 0.175
+        elif abs(z_rotation) < 0 < x_speed:
+            z_rotation = -0.175
 
         self.drive.arcadeDrive(x_speed, z_rotation)
         self.launcher_motors.set(launcher_speed)
