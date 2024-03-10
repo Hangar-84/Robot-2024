@@ -3,7 +3,8 @@ Robot 2024 — Robot code for the 2023-2024 FRC season.
 Copyright (C) 2024  Hangar 84
 
 Xbox Controller Mapping:
-- Right Stick: Drive (Arcade Drive)
+- Left Stick: Drive (X-Speed, Arcade Drive)
+- Right Stick: Drive (Z-Rotation, Arcade Drive)
 - Left Trigger: Launcher (Intake)
 - Right Trigger: Launcher (Outtake)
 
