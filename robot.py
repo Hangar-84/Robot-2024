@@ -54,7 +54,7 @@ class Robot(MagicRobot):
                 x_speed = self.controller.getLeftY()
                 z_rotation = self.controller.getRightX()
 
-                launcher_speed = -self.controller.getLeftY() + self.controller.getRightY()
+                launcher_speed = -self.controller.getLeftTriggerAxis() + self.controller.getRightTriggerAxis()
 
             case CommandJoystick():
                 x_speed = self.controller.getY()
