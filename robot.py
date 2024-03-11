@@ -51,6 +51,12 @@ class Robot(MagicRobot):
         self.left_motors.setInverted(True)
         self.launcher_motors.setInverted(True)
 
+    def autonomous(self) -> None:
+        if self.timer.get() < 2.0:
+            self.drive.arcadeDrive(0.5,0)
+        else:
+            self.stopMotor()
+
     def teleopPeriodic(self) -> None:
         match self.controller:
             case CommandXboxController():
