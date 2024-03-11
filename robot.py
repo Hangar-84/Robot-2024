@@ -26,8 +26,8 @@ class Robot(MagicRobot):
     def __init__(self):
         super().__init__()
 
-        self.stopMotor: None = None
-        self.timer:  None = None
+        self.stopMotor = None
+        self.timer = None
         self.left_motors: MotorControllerGroup | None = None
         self.right_motors: MotorControllerGroup | None = None
         self.drive: DifferentialDrive | None = None
@@ -50,12 +50,6 @@ class Robot(MagicRobot):
 
         self.left_motors.setInverted(True)
         self.launcher_motors.setInverted(True)
-
-    def autonomous(self) -> None:
-        if self.timer.get() < 2.0:
-            self.drive.arcadeDrive(0.5,0)
-        else:
-            self.stopMotor()
 
     def teleopPeriodic(self) -> None:
         match self.controller:
@@ -87,3 +81,16 @@ class Robot(MagicRobot):
 
         self.drive.arcadeDrive(x_speed, -z_rotation)
         self.launcher_motors.set(launcher_speed)
+    def autonomousInit(self):
+        """This function is run once each time the robot enters autonomous mode."""
+
+    def autonomousPeriodic(self):
+        """This function is called periodically during autonomous."""
+
+        # Drive for two seconds
+        if self.timer.get() < 2.0:
+            # Drive forwards half speed, make sure to turn input squaring off
+            self.drive.arcadeDrive(0.5, 0, squareInputs=False)
+        else:
+            self.stopMotor()
+        self.timer.restart()
