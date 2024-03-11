@@ -51,14 +51,6 @@ class Robot(MagicRobot):
         self.left_motors.setInverted(True)
         self.launcher_motors.setInverted(True)
 
-    def autonomousPeriodic(self) -> None:
-        if self.timer.get() <= 5.0:
-            self.drive.arcadeDrive(0.5, 0)
-        else:
-            self.stopMotor()
-
-        self.timer.get(3.0)
-
     def teleopPeriodic(self) -> None:
         match self.controller:
             case CommandXboxController():
@@ -82,10 +74,10 @@ class Robot(MagicRobot):
         # Apply a manual correction to drift due to lack of friction on left wheels when going straight forward/backward
         # TODO: Reduce the correction at slower speeds
         if abs(z_rotation) < 0.1:
-            if x_speed > 0:
-                z_rotation = 0.175
-            elif x_speed < 0:
-                z_rotation = -0.175
+            if x_speed < 0:
+                z_rotation = 0.18
+            elif x_speed > 0:
+                z_rotation = -0.18
 
         self.drive.arcadeDrive(x_speed, -z_rotation)
         self.launcher_motors.set(launcher_speed)
