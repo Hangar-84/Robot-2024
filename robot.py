@@ -18,7 +18,7 @@ from phoenix5 import WPI_TalonSRX, WPI_VictorSPX
 # NOTE: `rev` comes from `robotpy`'s `rev` extra. The following inspection is a false positive.
 # noinspection PyPackageRequirements
 from rev import CANSparkMax, CANSparkLowLevel
-from wpilib import MotorControllerGroup
+from wpilib import MotorControllerGroup, getTime
 from wpilib.drive import DifferentialDrive
 
 
@@ -26,8 +26,7 @@ class Robot(MagicRobot):
     def __init__(self):
         super().__init__()
 
-        self.stopMotor = None
-        self.timer = None
+        self.stopMotor: None = None
         self.left_motors: MotorControllerGroup | None = None
         self.right_motors: MotorControllerGroup | None = None
         self.drive: DifferentialDrive | None = None
@@ -88,9 +87,13 @@ class Robot(MagicRobot):
     def autonomousPeriodic(self):
         """This function is called periodically during autonomous."""
 
-        if self.timer.get() < 2.0:
+        if getTime() <= 2.0:
             # Drive forwards half speed, make sure to turn input squaring off
-            self.drive.arcadeDrive(0.5, 0, squareInputs=False)
+            self.drive.arcadeDrive(0.3, 0, squareInputs=False)
+        elif getTime() <= 0:
+            self.stopMotor()
         else:
             self.stopMotor()
-        self.timer.restart()
+
+        getTime(1.5)
+        getTime.restart()
