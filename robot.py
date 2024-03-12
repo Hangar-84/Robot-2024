@@ -18,7 +18,7 @@ from phoenix5 import WPI_TalonSRX, WPI_VictorSPX
 # NOTE: `rev` comes from `robotpy`'s `rev` extra. The following inspection is a false positive.
 # noinspection PyPackageRequirements
 from rev import CANSparkMax, CANSparkLowLevel
-from wpilib import MotorControllerGroup, getTime
+from wpilib import MotorControllerGroup, cameraserver, getTime
 from wpilib.drive import DifferentialDrive
 
 
@@ -26,6 +26,7 @@ class Robot(MagicRobot):
     def __init__(self):
         super().__init__()
 
+        self.camera: cameraserver | None = None
         self.stopMotor: None = None
         self.left_motors: MotorControllerGroup | None = None
         self.right_motors: MotorControllerGroup | None = None
@@ -49,6 +50,9 @@ class Robot(MagicRobot):
 
         self.left_motors.setInverted(True)
         self.launcher_motors.setInverted(True)
+
+        self.camera = cameraserver
+        self.camera = ()
 
     def teleopPeriodic(self) -> None:
         match self.controller:
