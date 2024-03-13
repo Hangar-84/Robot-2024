@@ -24,6 +24,8 @@ class RobotContainer:
 
         self.subsystems = Subsystems()
 
+        self.bind_controls()
+
     def bind_controls(self) -> None:
         """
         Xbox Controller Mapping:
