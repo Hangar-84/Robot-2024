@@ -2,6 +2,7 @@
 Robot 2024 — Robot code for the 2023-2024 FRC season.
 Copyright (C) 2024  Hangar 84
 """
+
 from dataclasses import dataclass
 
 from commands2 import Command, InstantCommand, cmd
@@ -45,7 +46,8 @@ class RobotContainer:
         self.subsystems.launcher.setDefaultCommand(
             cmd.run(
                 lambda: self.subsystems.launcher.launcher_motors.set(
-                    -self.controller.getLeftTriggerAxis() + self.controller.getRightTriggerAxis()
+                    -self.controller.getLeftTriggerAxis()
+                    + self.controller.getRightTriggerAxis()
                 )
             )
         )

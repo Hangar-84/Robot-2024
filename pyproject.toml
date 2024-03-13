@@ -17,6 +17,9 @@ extras = [
     "rev",
 ]
 
+[tool.poetry.group.dev.dependencies]
+black = "^24.2.0"
+
 [tool.robotpy]
 robotpy_version = "2024.3.1.0"
 # Read: https://docs.wpilib.org/en/stable/docs/software/vscode-overview/3rd-party-libraries.html
