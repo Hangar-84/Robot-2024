@@ -9,6 +9,8 @@ from wpilib import MotorControllerGroup
 
 
 class LauncherSubsystem(Subsystem):
+    """Subsystem for the robot's launcher."""
+
     # TODO: Add `launch` and `intake` commands for use with autonomous.
     def __init__(self):
         super().__init__()

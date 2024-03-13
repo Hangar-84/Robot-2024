@@ -10,6 +10,10 @@ from wpilib.drive import DifferentialDrive
 
 
 class DriveSubsystem(Subsystem):
+    """
+    Subsystem for controlling the robot's drive base.
+    """
+
     def __init__(self):
         super().__init__()
 
@@ -24,8 +28,8 @@ class DriveSubsystem(Subsystem):
         """
         Wrapper around `DifferentialDrive.arcadeDrive` to allow for drift correction.
 
-        :param x_speed:
-        :param z_rotation:
+        :param x_speed: The speed of the robot in the x direction (forward).
+        :param z_rotation: The rotation of the robot around the z-axis.
         :return:
         """
         if abs(z_rotation) < 0.1:

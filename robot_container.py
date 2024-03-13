@@ -14,11 +14,18 @@ from subsystems.launcher_subsystem import LauncherSubsystem
 
 @dataclass
 class Subsystems:
+    """Dataclass containing all robot subsystems."""
+
     drive: DriveSubsystem = DriveSubsystem()
     launcher: LauncherSubsystem = LauncherSubsystem()
 
 
 class RobotContainer:
+    """
+    Container for the majority of robot logic.
+    This class is responsible for connecting subsystems, commands, and/or buttons and autonomous routines.
+    """
+
     def __init__(self):
         self.controller = CommandXboxController(0)
 
@@ -28,6 +35,8 @@ class RobotContainer:
 
     def bind_controls(self) -> None:
         """
+        Initialize commands related to the robot's controls.
+
         Xbox Controller Mapping:
         - Left Stick: Drive (X-Speed, Arcade Drive)
         - Right Stick: Drive (Z-Rotation, Arcade Drive)
@@ -42,7 +51,7 @@ class RobotContainer:
                 lambda: self.subsystems.drive.arcade_drive(
                     self.controller.getLeftY(), self.controller.getRightX()
                 ),
-                self.subsystems.drive
+                self.subsystems.drive,
             )
         )
 
@@ -52,11 +61,16 @@ class RobotContainer:
                     -self.controller.getLeftTriggerAxis()
                     + self.controller.getRightTriggerAxis()
                 ),
-                self.subsystems.launcher
+                self.subsystems.launcher,
             )
         )
 
     @property
     def auto_command(self) -> Command:
+        """
+        Returns the autonomous command to be scheduled when autonomous starts.
+
+        :return: The command to be scheduled.
+        """
         # TODO: Add autonomous mode selector to the dashboard.
         return InstantCommand()

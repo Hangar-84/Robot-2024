@@ -9,6 +9,11 @@ from robot_container import RobotContainer
 
 
 class Robot(TimedCommandRobot):
+    """
+    Main robot class. This is the entry point for the robot code.
+    `RobotContainer` is where the majority of the robot should be defined, not here.
+    """
+
     container: RobotContainer
     command_scheduler: CommandScheduler
 
