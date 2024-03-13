@@ -5,7 +5,16 @@ Copyright (C) 2024  Hangar 84
 
 from dataclasses import dataclass
 
-from commands2 import Command, InstantCommand, cmd, WaitCommand, SequentialCommandGroup
+from commands2 import (
+    Command,
+    InstantCommand,
+    cmd,
+    WaitCommand,
+    SequentialCommandGroup,
+    Command,
+    ParallelRaceGroup,
+    RepeatCommand,
+)
 from commands2.button import CommandXboxController
 
 from subsystems.drive_subsystem import DriveSubsystem
@@ -73,8 +82,16 @@ class RobotContainer:
         :return: The command to be scheduled.
         """
         # TODO: Add autonomous mode selector to the dashboard.
-        return SequentialCommandGroup(
-            InstantCommand(lambda: self.subsystems.drive.arcade_drive(0.5, 0.0)),
-            WaitCommand(2.0),
-            InstantCommand(lambda: self.subsystems.drive.arcade_drive(0.0, 0.0)),
+        return (
+            cmd.run(
+                lambda: self.subsystems.drive.arcade_drive(0.5, 0.0),
+                self.subsystems.drive,
+            )
+            .withTimeout(2.0)
+            .andThen(
+                InstantCommand(
+                    lambda: self.subsystems.drive.differential_drive.stopMotor(),
+                    self.subsystems.drive,
+                )
+            )
         )
