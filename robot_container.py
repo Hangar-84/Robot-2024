@@ -41,7 +41,8 @@ class RobotContainer:
             cmd.run(
                 lambda: self.subsystems.drive.arcade_drive(
                     self.controller.getLeftY(), self.controller.getRightX()
-                )
+                ),
+                self.subsystems.drive
             )
         )
 
@@ -50,7 +51,8 @@ class RobotContainer:
                 lambda: self.subsystems.launcher.launcher_motors.set(
                     -self.controller.getLeftTriggerAxis()
                     + self.controller.getRightTriggerAxis()
-                )
+                ),
+                self.subsystems.launcher
             )
         )
 
