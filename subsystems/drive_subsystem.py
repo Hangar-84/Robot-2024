@@ -34,8 +34,8 @@ class DriveSubsystem(Subsystem):
         """
         if abs(z_rotation) < 0.1:
             if x_speed < 0:
-                z_rotation = 0.175
-            elif x_speed > 0:
-                z_rotation = -0.175
+                z_rotation = 0.1
+        elif x_speed > 0:
+            z_rotation = -0.1
 
         self.differential_drive.arcadeDrive(x_speed, z_rotation)
