@@ -19,3 +19,5 @@ class LauncherSubsystem(Subsystem):
             CANSparkMax(1, CANSparkLowLevel.MotorType.kBrushed),
             CANSparkMax(2, CANSparkLowLevel.MotorType.kBrushed),
         )
+
+        self.launcher_motors.setInverted(True)
